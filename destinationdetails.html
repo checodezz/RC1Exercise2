@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Destinations</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">Travel Database</a>
+    <nav>
+      <ul>
+        <li><a href='index.html'>Home</a></li>
+        <li><a href='destinations.html'>Destinations</a></li>
+        <li><a href='travelReport.html'>Travel Report</a></li>
+        <li><a href='travelTips.html'>Travel Tips</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+
+    <h1>Travel Details</h1>
+
+    <section id='displayReview'>
+    </section>
+
+  </main>
+  <!--  Js logic-->
+  <script>
+    let destinationReview = [
+      {
+        id: '1',
+        name: 'Paris',
+        highlights: 'Eiffel Tower, Louvre Museum',
+        details: 'A wonderful trip to the romantic city of Paris.',
+        duration: '7 days' // Hardcoded duration for Paris
+      },
+      {
+        id: '2',
+        name: 'Tokyo',
+        highlights: 'Tokyo Tower, Meiji Shrine',
+        details: 'Exploring the vibrant city of Tokyo.',
+        duration: '5 days' // Hardcoded duration for Tokyo
+      },
+      {
+        id: '3',
+        name: 'Rome',
+        highlights: 'Colosseum, Vatican City',
+        details: 'Discovering the ancient history of Rome.',
+        duration: '6 days' // Hardcoded duration for Rome
+      },
+      {
+        id: '4',
+        name: 'New York City',
+        highlights: 'Statue of Liberty, Central Park',
+        details: 'The city that never sleeps - New York!',
+        duration: '4 days' // Hardcoded duration for New York City
+      },
+      {
+        id: '5',
+        name: 'Cape Town',
+        highlights: 'Table Mountain, Robben Island',
+        details: 'Enjoying the beauty of Cape Town.',
+        duration: '8 days' // Hardcoded duration for Cape Town
+      },
+      {
+        id: '6',
+        name: 'Sydney',
+        highlights: 'Sydney Opera House, Bondi Beach',
+        details: 'Exploring the wonders of Sydney.',
+        duration: '9 days' // Hardcoded duration for Sydney
+      }
+    ];
+
+
+
+
+    function getDestinationId(id) {
+      let url = new URL(window.location.href)
+      return url.searchParams.get(id)
+    }
+    let foundedId = getDestinationId('id')
+
+    let reviewId;
+    for (let i = 0; i < destinationReview.length; i++) {
+      if (destinationReview[i].id === foundedId) {
+        reviewId = destinationReview[i]
+      }
+    }
+    console.log(reviewId)
+
+    //displaying the details on the view
+    let reviewDetailElement = document.getElementById('displayReview')
+
+    if (reviewId) {
+      reviewDetailElement.innerHTML = `
+      <h2>${reviewId.name}</h2>
+      <p><strong>Duration: </strong>${reviewId.duration}</p>
+      <p><strong>Highlights: </strong>${reviewId.highlights}</p>
+      <p><strong>Details: </strong>${reviewId.details}</p>
+      `
+    } else {
+      reviewDetailElement = 'Destination not Found'
+    }
+
+
+  </script>
+</body>
+
+</html>
